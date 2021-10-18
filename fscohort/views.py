@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import StudentForm
 from .models import Student
 # Create your views here.
 
@@ -18,13 +19,31 @@ def student_list(request):
     return render(request, "fscohort/student_list.html", context)
 
 def student_add(request):
+    form = StudentForm()
+    
+    if request.method == "POST":
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+    
+    context = {
+       
+       "form":form     
+    }
+    
+    return render(request, "fscohort/student_add.html", context)
+
+def student_detail(request,id):
+    student = Student.objects.get(id=id)
+    context = {
+        "student":student
+    }
+    
+    return render(request, "fscohort/student_detail.html", context)
+    
+
+def student_update(request, pk):
     pass
 
-def student_detail(request):
-    pass
-
-def student_update(request):
-    pass
-
-def student_delete(request):
+def student_delete(request, pk):
     pass
