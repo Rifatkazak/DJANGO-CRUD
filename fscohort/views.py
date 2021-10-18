@@ -44,6 +44,7 @@ def student_detail(request,id):
 def student_update(request, id):
     
     student = Student.objects.get(id=id)
+    
     form = StudentForm(instance=student)
     
     if request.method == "POST":
