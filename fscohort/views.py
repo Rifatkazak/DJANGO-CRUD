@@ -22,7 +22,7 @@ def student_add(request):
     form = StudentForm()
     
     if request.method == "POST":
-        form = StudentForm(request.POST)
+        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
     
@@ -48,7 +48,7 @@ def student_update(request, id):
     form = StudentForm(instance=student)
     
     if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
+        form = StudentForm(request.POST, request.FILES, instance=student)
         if form.is_valid():
             form.save()
             return redirect("list")
