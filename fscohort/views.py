@@ -62,4 +62,5 @@ def student_update(request, id):
     return render(request, "fscohort/student_update.html", context)
 
 def student_delete(request, pk):
+    
     pass
